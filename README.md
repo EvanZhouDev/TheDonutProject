@@ -2,6 +2,8 @@
 
 ## What is The Donut Project?
 
+Watch the introduction video [on YouTube](https://www.youtube.com/watch?v=txWCx1ku_2U).
+
 This all started with [donut.c](https://www.a1k0n.net/2006/09/15/obfuscated-c-donut.html), the classic C code that looks like, and generates a 3D spinning donut when run. Out of sheer curiosity, I searched up this code in different languages, and noticed that many people have created 3D spinning donuts in those languages... but their code mostly didn't look like a donut.
 
 My goal at the start was to bring this classic piece of code (and its donut shape) to different languages. I started with a [JavaScript rendition of donut.c](https://github.com/EvanZhouDev/donut-js). Then, after much struggle, I created a [Python version](https://github.com/EvanZhouDev/donut-py).
