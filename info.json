@@ -15,8 +15,12 @@
 		"name": "Rue",
 		"github": "IOKG04"
 	},
-    "zig": {
-        "name": "Kacey Kniffen",
-        "github": "KaceyXam",
-    }
+	"zig": {
+		"name": "Kacey Kniffen",
+		"github": "KaceyXam"
+	},
+	"jsfuck": {
+		"name": "Rue",
+		"github" : "IOKG04"
+	}
 }
