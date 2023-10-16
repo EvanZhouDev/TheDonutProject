@@ -14,5 +14,9 @@
 	"cs": {
 		"name": "Rue",
 		"github": "IOKG04"
-	}
+	},
+    "zig": {
+        "name": "Kacey Kniffen",
+        "github": "KaceyXam",
+    }
 }
