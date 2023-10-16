@@ -3,14 +3,14 @@
 #include <string.h>
 #include <math.h>
 
-// expects buffer to be buffer_size * buffer_size characters long
+// expects buffer to be buffer_size * buffer_size / 2 characters long
 // returns the amount of characters written to buffer
 unsigned long printcircle(unsigned long r, char *buffer, unsigned long buffer_size, char c){
     unsigned long outp = 0;
-    unsigned long center = buffer_size / 2;
-    for(unsigned long y = 0; y < buffer_size; ++y){
+    unsigned long center = buffer_size / 2, centery = buffer_size / 4;
+    for(unsigned long y = 0; y < center; ++y){
 	for(unsigned long x = 0; x < buffer_size; ++x){
-	    if(sqrt((x - center) * (x - center) + (y - center) * (y - center)) < r){
+	    if(sqrt((x - center) * (x - center) + ((y - centery) * (y - centery)) * 4) < r){
 		buffer[x + buffer_size * y] = c;
 		++outp;
 	    }
@@ -29,14 +29,14 @@ int main(int argc, char **argv){
 
     unsigned long inside_r  = strtoul(argv[1], NULL, 10),
 		  outside_r = strtoul(argv[2], NULL, 10);
-    char *buffer = malloc(outside_r * outside_r * 4);
+    char *buffer = malloc(outside_r * outside_r * 2);
 
-    memset(buffer, ' ', outside_r * outside_r * 4);
+    memset(buffer, ' ', outside_r * outside_r * 2);
 
     unsigned long character_amount = printcircle(outside_r, buffer, outside_r * 2, '.');
     character_amount -= printcircle(inside_r, buffer, outside_r * 2, ' ');
 
-    for(unsigned long y = 0; y < outside_r * 2; ++y){
+    for(unsigned long y = 0; y < outside_r; ++y){
 	for(unsigned long x = 0; x < outside_r * 2; ++x){
 	    putchar(buffer[x + y * 2 * outside_r]);
 	}
