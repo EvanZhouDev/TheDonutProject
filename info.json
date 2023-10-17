@@ -19,8 +19,12 @@
 		"name": "Amaar Chughtai",
 		"github": "DragonXDev"
 	},
-  "zig": {
-      "name": "Kacey Kniffen",
-      "github": "KaceyXam",
+        "zig": {
+              "name": "Kacey Kniffen",
+              "github": "KaceyXam"
+        },
+        "lua": {"name": "Claire Lacroix",
+               "github": "Ex-Opera"
   }
 }
+
