@@ -15,8 +15,12 @@
 		"name": "Rue",
 		"github": "IOKG04"
 	},
-    "zig": {
-        "name": "Kacey Kniffen",
-        "github": "KaceyXam",
-    }
+	"cpp": {
+		"name": "Amaar Chughtai",
+		"github": "DragonXDev"
+	},
+  "zig": {
+      "name": "Kacey Kniffen",
+      "github": "KaceyXam",
+  }
 }
