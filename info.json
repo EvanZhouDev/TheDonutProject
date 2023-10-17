@@ -18,5 +18,9 @@
 	"cpp": {
 		"name": "Amaar Chughtai",
 		"github": "DragonXDev"
-	}
+	},
+  "zig": {
+      "name": "Kacey Kniffen",
+      "github": "KaceyXam",
+  }
 }
