@@ -1,30 +1,34 @@
 {
-	"js": {
-		"name": "Evan Zhou",
-		"github": "EvanZhouDev"
-	},
-	"py": {
-		"name": "Evan Zhou",
-		"github": "EvanZhouDev"
-	},
-	"c": {
-		"name": "Andy Sloane",
-		"github": "a1k0n"
-	},
-	"cs": {
-		"name": "Rue",
-		"github": "IOKG04"
-	},
-	"cpp": {
-		"name": "Amaar Chughtai",
-		"github": "DragonXDev"
-	},
-	"zig": {
-		"name": "Kacey Kniffen",
-		"github": "KaceyXam"
-	},
-	"jsfuck": {
-		"name": "Rue",
-		"github" : "IOKG04"
-	}
+    "js": {
+        "name": "Evan Zhou",
+        "github": "EvanZhouDev"
+    },
+    "py": {
+        "name": "Evan Zhou",
+        "github": "EvanZhouDev"
+    },
+    "c": {
+        "name": "Andy Sloane",
+        "github": "a1k0n"
+    },
+    "cs": {
+        "name": "Rue",
+        "github": "IOKG04"
+    },
+    "cpp": {
+        "name": "Amaar Chughtai",
+        "github": "DragonXDev"
+    },
+    "zig": {
+        "name": "Kacey Kniffen",
+        "github": "KaceyXam"
+    },
+    "lua": {
+        "name": "Claire Lacroix",
+        "github": "Ex-Opera"
+    },
+    "jsfuck": {
+		  "name": "Rue",
+  		"github" : "IOKG04"
+	  }
 }
