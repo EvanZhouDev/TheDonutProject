@@ -26,5 +26,9 @@
     "lua": {
         "name": "Claire Lacroix",
         "github": "Ex-Opera"
-    }
+    },
+    "jsfuck": {
+		  "name": "Rue",
+  		"github" : "IOKG04"
+	  }
 }
