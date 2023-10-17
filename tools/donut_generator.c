@@ -24,7 +24,7 @@ int main(int argc, char **argv){
 
     // exit if too few or too many arguments are given
     if(argc < 2 || argc > 3){
-	printf("Not enough arguments\n");
+	printf("Error 0: Not enough or too many arguments\n");
 	printf("\nUsage:\n");
 	printf(" donut_generator [characters]\t\tGenerates a donut with a minimum of [characters] characters and a donut like ratio of inner and outer radius\n");
 	printf(" donut_generator [outside_r] [inside_r]\tGenerates a donut with an outer radius of [outside_r] and an inner radius of [inside_r]\n");
