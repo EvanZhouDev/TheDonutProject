@@ -28,7 +28,7 @@ First, find a language that someone hasn't done yet (you can see the finished la
 
 ##### Basic Rules
 * Make sure that the output is similar to the original donut.c.
-* Also, importantly, make sure that the code looks like a donut.
+* Also, importantly, make sure that the code looks like a donut. To make this easier you can use [donut_generator](./tools/donut_generator.md).
 
 ##### Recommendations
 Additionally, here are some (decently strong) recommendations about how you should make your donut:
