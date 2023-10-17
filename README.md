@@ -50,6 +50,8 @@ Then, add an entry into `info.json`. The key should be whatever file extension y
 * `github` (Your github account, *optional*)
 * `repo` (Full link to your GitHub repository where you have your donut, *optional*)
 
+Please use 4 space indentation in `info.json`.
+
 For example, my `donut.js` would look something like this:
 
 ```json
