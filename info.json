@@ -42,5 +42,9 @@
     "jsfuck": {
         "name": "Rue",
         "github" : "IOKG04"
+    },
+    "html": {
+        "name": "The Color Blocks",
+        "github": "thecolorblocks"
     }
 }
