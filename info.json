@@ -48,6 +48,11 @@
         "name": "Joe Skeen",
         "github": "joeskeen"
     },
+    "ascii.svg": {
+        "name": "Evan Zhou",
+        "github": "EvanZhouDev",
+        "description": "SVG of a 3D ASCII spinning donut."
+    },
     "svg": {
         "name": "Joe Skeen",
         "github": "joeskeen"
