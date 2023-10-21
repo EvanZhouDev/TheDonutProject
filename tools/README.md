@@ -1,5 +1,7 @@
 ## `donutGenerator`
 
+Originally created by [@IOKG04](https://github.com/IOKG04) in C. Transpiled into Python for ease of use.
+
 `donutGenerator` is a tool for creating a donut template made from periods to shape your code after.
 
 #### Contents:
