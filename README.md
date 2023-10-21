@@ -27,6 +27,10 @@ Do so in 2 easy steps:
 
 First, find a language that someone hasn't done yet (you can see the finished languages in the `donuts` folder or `info.json`) and recreate donut.c!
 
+##### Helpful resources:
+* [Donut.c blog](https://www.a1k0n.net/2011/07/20/donut-math.html)
+* [Library-less donut.c](https://www.a1k0n.net/2021/01/13/optimizing-donut.html)
+
 > ##### Alternate-Implementation Donuts
 >
 > If you would like to contribute a donut in a language someone has already done with your own spin to it, write the file like this: `donut.[TYPE].[EXTENSION]` with a JSON key in `info.json` of `[TYPE].[EXTENSION]`. For example, if you were to make a JS donut only using fixed-point arithmetic (so-called being "pure"), you may call it `donut.pure.js` with a JSON key of `pure.js`. Ensure you place in the PR why you believe this donut is unique enough to be its own separate file.
