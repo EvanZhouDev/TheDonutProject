@@ -28,6 +28,7 @@ Do so in 2 easy steps:
 First, find a language that someone hasn't done yet (you can see the finished languages in the `donuts` folder or `info.json`) and recreate donut.c!
 
 > ##### Alternate-Implementation Donuts
+>
 > If you would like to contribute a donut in a language someone has already done with your own spin to it, write the file like this: `donut.[TYPE].[EXTENSION]` with a JSON key in `info.json` of `[TYPE].[EXTENSION]`. For example, if you were to make a JS donut only using fixed-point arithmetic (so-called being "pure"), you may call it `donut.pure.js` with a JSON key of `pure.js`. Ensure you place in the PR why you believe this donut is unique enough to be its own separate file.
 > Additionally, please include a short summary in the `description` of why this donut is special.
 
@@ -54,12 +55,12 @@ Add your donut to the `donuts` folder. Ensure it is named `donut`, with the prop
 
 Then, add an entry into `info.json`. The key should be whatever file extension (and potentially additional suffixes) you are using (make sure it matches with your file—it should be everything that follows `donut.`), and the value should look like this:
 
-| Key           | Description                                                           | Required?                                       |
-| ------------- | --------------------------------------------------------------------- | ----------------------------------------------- |
-| `name`        | Your name, or name you would like to associate your donut with        | **Required**                                    |
-| `run`         | Command to run your donut with; refer to the file simply as `donut.*` | **Required**                                    |
-| `github`      | Your GitHub account                                                   | _Optional_                                      |
-| `repo`        | Full link to your GitHub repository where you have your donut         | _Optional_                                      |
+| Key           | Description                                                           | Required?                                                                           |
+| ------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `name`        | Your name, or name you would like to associate your donut with        | **Required**                                                                        |
+| `github`      | Your GitHub account                                                   | _Optional_                                                                          |
+| `repo`        | Full link to your GitHub repository where you have your donut         | _Optional_                                                                          |
+| `run`         | Command to run your donut with; refer to the file simply as `donut.*` | _Required if special action needed (i.e. compiler flags, etc.)_                     |
 | `description` | Describe your donut.                                                  | _Required for [alternate-implementation donuts](#alternate-implementation-donuts)._ |
 
 For example, my `donut.js` would look something like this:
@@ -70,8 +71,7 @@ For example, my `donut.js` would look something like this:
 "js": {
     "name": "Evan Zhou",
     "github": "EvanZhouDev",
-    "run": "node donut.js",
-    "repo": "https://github.com/EvanZhouDev/donut-js",
+    "repo": "https://github.com/EvanZhouDev/donut-js"
 }
 ```
 

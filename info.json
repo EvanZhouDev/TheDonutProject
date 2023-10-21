@@ -9,7 +9,8 @@
     },
     "c": {
         "name": "Andy Sloane",
-        "github": "a1k0n"
+        "github": "a1k0n",
+        "run": "gcc -o donut donut.c -lm -lc && ./donut"
     },
     "cs": {
         "name": "Rue",
@@ -57,7 +58,7 @@
     },
     "jsfuck": {
         "name": "Rue",
-        "github" : "IOKG04"
+        "github": "IOKG04"
     },
     "html": {
         "name": "The Color Blocks",
@@ -65,6 +66,6 @@
     },
     "s": {
         "name": "Rue",
-	"github": "IOKG04"
+        "github": "IOKG04"
     }
 }
