@@ -15,8 +15,9 @@ The Donut Project seeks to replicate donut.c in as many languages as possible, a
 ## How do I contribute?
 
 You can either...
-* [Contribute your own donut](#contribute-your-own-donut)
-* [Contribute someone else's donut](#contribute-someone-elses-donut)
+
+- [Contribute your own donut](#contribute-your-own-donut)
+- [Contribute someone else's donut](#contribute-someone-elses-donut)
 
 ### Contribute Your own Donut
 
@@ -26,14 +27,20 @@ Do so in 2 easy steps:
 
 First, find a language that someone hasn't done yet (you can see the finished languages in the `donuts` folder or `info.json`) and recreate donut.c!
 
+> ##### Alternate-Implementation Donuts
+> If you would like to contribute a donut in a language someone has already done with your own spin to it, write the file like this: `donut.[TYPE].[EXTENSION]` with a JSON key in `info.json` of `[TYPE].[EXTENSION]`. For example, if you were to make a JS donut only using fixed-point arithmetic (so-called being "pure"), you may call it `donut.pure.js` with a JSON key of `pure.js`. Ensure you place in the PR why you believe this donut is unique enough to be its own separate file.
+> Additionally, please include a short summary in the `description` of why this donut is special.
+
 ##### Basic Rules
-* Make sure that the output is similar to the original donut.c.
-* Also, importantly, make sure that the code looks like a donut. To make this easier you can use [`donutGenerator`](./tools/README.md#donutgenerator).
+
+- Make sure that the output is similar to the original donut.c.
+- Also, importantly, make sure that the code looks like a donut. To make this easier you can use [`donutGenerator`](./tools/README.md#donutgenerator).
 
 ##### Recommendations
+
 Additionally, here are some (decently strong) recommendations about how you should make your donut:
 
-* Make sure the donut is mostly code. It's alright if there are a few lines/places with comments, however.
+- Make sure the donut is mostly code. It's alright if there are a few lines/places with comments, however.
 
 #### Step 2: Submit Your Donut
 
@@ -43,22 +50,28 @@ Now, fork this repo with the following command.
 git clone https://github.com/EvanZhouDev/TheDonutProject.git
 ```
 
-Add your donut to the `donuts` folder. Ensure it is named `donut`, with the proper extension at the end. For example, I may have the file `donut.py` or `donut.js`.
+Add your donut to the `donuts` folder. Ensure it is named `donut`, with the proper extension at the end. For example, I may have the file `donut.py`, `donut.js`, or `donut.pure.js` (as mentioned above).
 
-Then, add an entry into `info.json`. The key should be whatever file extension you are using (make sure it matches with your file), and the value should look like this:
-* `name` (Your name, or name you would like to associate your donut with)
-* `github` (Your github account, *optional*)
-* `repo` (Full link to your GitHub repository where you have your donut, *optional*)
+Then, add an entry into `info.json`. The key should be whatever file extension (and potentially additional suffixes) you are using (make sure it matches with your file—it should be everything that follows `donut.`), and the value should look like this:
 
-Please use 4 space indentation in `info.json`.
+| Key           | Description                                                           | Required?                                       |
+| ------------- | --------------------------------------------------------------------- | ----------------------------------------------- |
+| `name`        | Your name, or name you would like to associate your donut with        | **Required**                                    |
+| `run`         | Command to run your donut with; refer to the file simply as `donut.*` | **Required**                                    |
+| `github`      | Your GitHub account                                                   | _Optional_                                      |
+| `repo`        | Full link to your GitHub repository where you have your donut         | _Optional_                                      |
+| `description` | Describe your donut.                                                  | _Required for [alternate-implementation donuts](#alternate-implementation-donuts)._ |
 
 For example, my `donut.js` would look something like this:
 
+> Please use 4 space indentation in `info.json`.
+
 ```json
-{
+"js": {
     "name": "Evan Zhou",
     "github": "EvanZhouDev",
-    "repo": "https://github.com/EvanZhouDev/donut-js"
+    "run": "node donut.js",
+    "repo": "https://github.com/EvanZhouDev/donut-js",
 }
 ```
 
@@ -68,4 +81,12 @@ Finally, simply submit a PR (with the language you are contributing in the title
 
 Alternatively, you can also submit donuts that you have found floating around the community already. Ensure that it still follows the [basic rules](#basic-rules) and [recommendations](#recommendations).
 
-Submit it just the same [as above](#step-2-submit-your-donut), but make sure you put *their name* and *their GitHub and repo* if applicable in the `info.json`.
+Submit it just the same [as above](#step-2-submit-your-donut), but make sure you put _their name_ and _their GitHub and repo_ if applicable in the `info.json`.
+
+## See Also
+
+Thank you to [@Rudxain](https://github.com/Rudxain) for the suggestion.
+
+- [small](https://github.com/mathiasbynens/small)
+- [hello-world](https://github.com/leachim6/hello-world)
+- [Rosetta Code](https://rosettacode.org/wiki/Rosetta_Code)
