@@ -19,6 +19,10 @@
         "name": "Amaar Chughtai",
         "github": "DragonXDev"
     },
+    "go": {
+        "name": "Evan Roos",
+        "github": "j-Ewan"
+    },
     "java": {
         "name": "Joe Skeen",
         "github": "joeskeen"
@@ -58,5 +62,9 @@
     "html": {
         "name": "The Color Blocks",
         "github": "thecolorblocks"
+    },
+    "s": {
+        "name": "Rue",
+	"github": "IOKG04"
     }
 }
