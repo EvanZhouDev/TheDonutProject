@@ -30,7 +30,7 @@ Its output will consist of a calculated outer and inner radius, the donut itself
 ##### Example:
 ```
 > python3 tools/donutGenerator.py 300
-Outer radius:                   16
+Outer radius:                   15
 Inner radius:                   5
 
                                 
@@ -50,7 +50,7 @@ Inner radius:                   5
       .....................     
          ...............        
 
-Character count: 352
+Character count: 314
 ```
 
 Please note that the output of `donut_generator` will never generate less than the minimum character amount, but might generate more characters, which can be advantageous in case more characters are required due to the geometry of the donut or if you want to include comments.

@@ -31,7 +31,7 @@ if len(argv) < 2 or len(argv) > 3:
 elif len(argv) == 2:
     A = int(argv[1])
 
-    outside_r = int(math.sqrt((2 * A) / (0.84 * math.pi))) + 1
+    outside_r = int(math.sqrt((2 * A) / (0.8775 * math.pi))) + 1
     inside_r = int(outside_r * 0.35)
 
     print(f"Outer radius:\t\t\t{outside_r}\nInner radius:\t\t\t{inside_r}\n")
