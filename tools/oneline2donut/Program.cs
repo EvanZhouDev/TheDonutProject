@@ -1,18 +1,23 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 /*
 
 c = coded
-x = checked
+x = checked / done
 
-[x] Parser:
+[x] Parse
  [x] Detect different groups
  [x] Detect strings
   [x] Make escaping characters possible
-[ ] Add arguments:
+[ ] Donutify input
+ [x] Generate donut template
+ [ ] Map input onto template without splitting groups
+[ ] Add arguments
  [ ] Defineable groups
+[ ] Add error messages where applicable
 
 Errors marked with `(I)` are internal. Please open an issue and describe what exactly you did to cause the error.
 
@@ -21,19 +26,53 @@ Errors marked with `(I)` are internal. Please open an issue and describe what ex
 namespace oneline2donut;
 
 public class Program{
-    public static Token[] tokens;
+    public static Token[]	tokens;
+    public static int		totalCharCount;
 
-    public static void Main(string[] args){
+    public static int Main(string[] args){
 	// TODO: add error for too few arguments
 
 	string baseCode = File.ReadAllText(args[0]);
-	// TODO: add error for base code not being oneline
+	// TODO: add error for base code not being oneline or being empty
 
+	// get tokens and total character count
+	totalCharCount = baseCode.Length;
 	tokens = Token.Parse(baseCode);
 
-	for(int i = 0; i <  tokens.Length; i++){
-	    Console.WriteLine(tokens[i].ToString(displayTokenGroup: true));
-	}
+	// get donut template
+	string donutTemplate = GenerateDonut();
+	Console.WriteLine(donutTemplate);
+
+	return 0;
+    }
+
+    private static string GenerateDonut(){
+	// uhh, do some stuff
+	int c;
+
+	string outp;
+
+	do{
+	    // draw donut
+	    outp = "";
+	    c = 0;
+	    int outsideR = (int)(Math.Sqrt((2 * totalCharCount) / (0.8775 * Math.PI))) + 1,
+		insideR  = (int)(outsideR * 0.35),
+		center  = outsideR,
+		centery = outsideR / 2;
+	    for(int y = 0; y < outsideR; y++){
+		for(int x = 0; x < outsideR * 2 + 1; x++){
+		    if(x != outsideR * 2 && Math.Sqrt((x - center) * (x - center) + (y - centery) * (y - centery) * 4) < outsideR && Math.Sqrt((x - center) * (x - center) + (y - centery) * (y - centery) * 4) >= insideR) outp += ".";
+		    else outp += " ";
+		    c++;
+		}
+		outp += "\n";
+	    }
+	    totalCharCount += 50;
+	} while(c < totalCharCount);
+	totalCharCount -= 50;
+
+	return outp;
     }
 }
 
@@ -136,7 +175,6 @@ _LoopExit:
 	List<Token> tokens = new List<Token>();
 	while(str.Length > 0){
 	    tokens.Add(FindFirstToken(ref str));
-//	    Console.WriteLine(str);
 	}
 	return tokens.ToArray();
     }
