@@ -72,5 +72,10 @@
         "name": "Rue",
         "github": "IOKG04",
         "run": "gcc -o donut donut.s -lc -lm && ./donut"
+    },
+    "rs": {
+        "name": "Bryan",
+        "github": "ThatXliner",
+        "run": "rustc donuts/donut.rs
     }
 }
