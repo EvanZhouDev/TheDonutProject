@@ -1,11 +1,13 @@
 {
     "js": {
         "name": "Evan Zhou",
-        "github": "EvanZhouDev"
+        "github": "EvanZhouDev",
+        "run": "node donut.js"
     },
     "py": {
         "name": "Evan Zhou",
-        "github": "EvanZhouDev"
+        "github": "EvanZhouDev",
+        "run": "python3 donut.py"
     },
     "c": {
         "name": "Andy Sloane",
@@ -14,7 +16,8 @@
     },
     "cs": {
         "name": "Rue",
-        "github": "IOKG04"
+        "github": "IOKG04",
+        "run": "mkdir donut && cd donut && dotnet new console && cp ../donut.cs Program.cs && dotnet run"
     },
     "cpp": {
         "name": "Amaar Chughtai",
@@ -58,7 +61,8 @@
     },
     "jsfuck": {
         "name": "Rue",
-        "github": "IOKG04"
+        "github": "IOKG04",
+        "run": "node donut.jsfuck"
     },
     "html": {
         "name": "The Color Blocks",
@@ -66,10 +70,12 @@
     },
     "s": {
         "name": "Rue",
-        "github": "IOKG04"
+        "github": "IOKG04",
+        "run": "gcc -o donut donut.s -lc -lm && ./donut"
     },
-   "rs": {
-        "name": "Bryan Hu",
-        "github": "ThatXliner"
-   }
+    "rs": {
+        "name": "Bryan",
+        "github": "ThatXliner",
+        "run": "rustc donuts/donut.rs
+    }
 }
