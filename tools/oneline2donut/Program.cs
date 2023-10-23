@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 
 /*
 
@@ -28,6 +28,8 @@ namespace oneline2donut;
 public class Program{
     public static Token[]	tokens;
     public static int		totalCharCount;
+    public static string[]	donutTemplate;
+    public static string	outp;
 
     public static int Main(string[] args){
 	// TODO: add error for too few arguments
@@ -40,38 +42,80 @@ public class Program{
 	tokens = Token.Parse(baseCode);
 
 	// get donut template
-	string donutTemplate = GenerateDonut();
-	Console.WriteLine(donutTemplate);
+_GenerateDonut:
+	donutTemplate = GenerateDonut();
+	// throw error on non-existant donutTemplate
+	if(donutTemplate.Length < 1){
+	    Console.WriteLine("Error 3 (I): donutTemplate non-existant");
+	    throw new Exception("Error 3 (I): donutTemplate non-existant");
+	}
+
+	// map tokens onto donut
+	int currentChar = 0, currentRow = 0, currentToken = 0, dotsLeft = donutTemplate[0].Count(c => c == '.');
+	outp = "";
+	while(currentToken < tokens.Length){
+	    // check if next token fits
+	    if(tokens[currentToken].length > dotsLeft || currentChar >= donutTemplate[currentRow].Length){
+		currentRow++;
+		// ~~throw error on donut template too small~~
+		// increase totalCharCount and restart on donutTemplate too small
+		if(currentRow >= donutTemplate.Length){
+		  /*Console.WriteLine("Error 4 (I): donutTemplate too small");
+		    throw new Exception("Error 4 (I): donutTemplate too small");*/
+		    int n = 0;
+		    for(int i = currentToken; i < tokens.Length; i++){
+			n += tokens[currentToken].length;
+		    }
+		    totalCharCount += n;
+		    goto _GenerateDonut;
+		}
+		currentChar = 0;
+		outp += '\n';
+		dotsLeft = donutTemplate[currentRow].Count(c => c == '.');
+		continue;
+	    }
+	    // check if next character is dot and continue if not
+	    if(donutTemplate[currentRow][currentChar] != '.'){
+		outp += donutTemplate[currentRow][currentChar];
+		currentChar++;
+		continue;
+	    }
+	    // append next token
+	    outp += tokens[currentToken].content;
+	    currentChar += tokens[currentToken].length;
+	    dotsLeft -= tokens[currentToken].length;
+	    currentToken++;
+	}
+
+	Console.WriteLine(outp);
 
 	return 0;
     }
 
-    private static string GenerateDonut(){
-	// uhh, do some stuff
+    private static string[] GenerateDonut(){
 	int c;
-
-	string outp;
+	string[] outp;
 
 	do{
 	    // draw donut
-	    outp = "";
 	    c = 0;
 	    int outsideR = (int)(Math.Sqrt((2 * totalCharCount) / (0.8775 * Math.PI))) + 1,
 		insideR  = (int)(outsideR * 0.35),
 		center  = outsideR,
 		centery = outsideR / 2;
+	    outp = new string[outsideR];
 	    for(int y = 0; y < outsideR; y++){
+		outp[y] = "";
 		for(int x = 0; x < outsideR * 2 + 1; x++){
-		    if(x != outsideR * 2 && Math.Sqrt((x - center) * (x - center) + (y - centery) * (y - centery) * 4) < outsideR && Math.Sqrt((x - center) * (x - center) + (y - centery) * (y - centery) * 4) >= insideR) outp += ".";
-		    else outp += " ";
+		    if(x != outsideR * 2 && Math.Sqrt((x - center) * (x - center) + (y - centery) * (y - centery) * 4) < outsideR && Math.Sqrt((x - center) * (x - center) + (y - centery) * (y - centery) * 4) >= insideR) outp[y] += '.';
+		    else outp[y] += ' ';
 		    c++;
 		}
-		outp += "\n";
 	    }
 	    totalCharCount += 50;
-	} while(c < totalCharCount);
-	totalCharCount -= 50;
+	} while(c < totalCharCount); //Make sure enough characters exist
 
+	totalCharCount -= 50;
 	return outp;
     }
 }
@@ -83,7 +127,7 @@ public struct Token{
 
     public Token(TokenGroup _tokenGroup, string _content){
 	tokenGroup = _tokenGroup;
-	content = _content;
+	content = _content.Replace('\t', ' ');
 	length = _content.Length;
     }
     public string ToString(bool displayTokenGroup = false){
