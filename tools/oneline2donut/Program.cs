@@ -35,7 +35,10 @@ public class Program{
 	// TODO: add error for too few arguments
 
 	string baseCode = File.ReadAllText(args[0]);
-	// TODO: add error for base code not being oneline or being empty
+	
+	// filter baseCode
+	if(baseCode.Contains('\n')) baseCode = baseCode.Replace("\n", " ");
+	baseCode = baseCode.Replace('\t', ' ');
 
 	// get tokens and total character count
 	totalCharCount = baseCode.Length;
@@ -51,47 +54,73 @@ _GenerateDonut:
 	}
 
 	// map tokens onto donut
-	int currentChar = 0, currentRow = 0, currentToken = 0, dotsLeft = donutTemplate[0].Count(c => c == '.');
+	int currentChar = 0, currentRow = 0, currentToken = 0, startToken, dotsLeft;
 	outp = "";
 	while(currentToken < tokens.Length){
-	    // check if next token fits
-	    if(tokens[currentToken].length > dotsLeft || currentChar >= donutTemplate[currentRow].Length){
+	    // test if linebreak is needed
+	    if(currentChar >= donutTemplate[currentRow].Length){
 		currentRow++;
-		// ~~throw error on donut template too small~~
-		// increase totalCharCount and restart on donutTemplate too small
-		if(currentRow >= donutTemplate.Length){
-		  /*Console.WriteLine("Error 4 (I): donutTemplate too small");
-		    throw new Exception("Error 4 (I): donutTemplate too small");*/
-		    int n = 0;
-		    for(int i = currentToken; i < tokens.Length; i++){
-			n += tokens[currentToken].length;
-		    }
-		    totalCharCount += n;
-		    goto _GenerateDonut;
-		}
 		currentChar = 0;
 		outp += '\n';
-		dotsLeft = donutTemplate[currentRow].Count(c => c == '.');
-		continue;
+		// retry with bigger donut on donutTemplate being too small
+		if(currentRow >= donutTemplate.Length){
+		    totalCharCount += 100;
+		    goto _GenerateDonut;
+		}
 	    }
-	    // check if next character is dot and continue if not
+
+	    // print if currentChar is not '.'
 	    if(donutTemplate[currentRow][currentChar] != '.'){
 		outp += donutTemplate[currentRow][currentChar];
 		currentChar++;
 		continue;
 	    }
-	    // append next token
-	    outp += tokens[currentToken].content;
-	    currentChar += tokens[currentToken].length;
-	    dotsLeft -= tokens[currentToken].length;
-	    currentToken++;
+
+	    //get fitable tokens
+	    dotsLeft = CountContinuousDots(donutTemplate[currentRow], currentChar);
+	    int tokensLength = tokens[currentToken].length;
+	    startToken = currentToken;
+	    do{
+		currentToken++;
+		if(currentToken >= tokens.Length){
+		    break;
+		}
+		tokensLength += tokens[currentToken].length;
+	    } while(tokensLength <= dotsLeft && tokens[currentToken].content != "</text>");
+	    if(currentToken < tokens.Length) tokensLength -= tokens[currentToken].length;
+
+	    // get extra spaces and spacesLeft/tokensLength
+	    int spacesLeft = dotsLeft - tokensLength + tokens[currentToken - 1].length;
+	    double sL_tL = spacesLeft / (double)tokensLength;	// explicit double division, i hate it
+	    double currentSpacesAmount = 0;
+	    
+	    // print tokens with spaces
+	    for(int i = startToken; i < currentToken; i++){
+		currentChar += tokens[i].length;
+		outp += tokens[i].content;
+		currentSpacesAmount += sL_tL;
+		while(currentSpacesAmount >= 1 && i < currentToken - 1){
+		    currentChar++;
+		    outp += ' ';
+		    currentSpacesAmount--;
+		}
+	    }
+	}
+	// print rest of donut
+	while(currentRow < donutTemplate.Length){
+	    outp += donutTemplate[currentRow][currentChar];
+	    currentChar++;
+	    if(currentChar >= donutTemplate[currentRow].Length){
+		currentRow++;
+		currentChar = 0;
+		outp += '\n';
+	    }
 	}
 
 	Console.WriteLine(outp);
 
 	return 0;
     }
-
     private static string[] GenerateDonut(){
 	int c;
 	string[] outp;
@@ -118,6 +147,14 @@ _GenerateDonut:
 	totalCharCount -= 50;
 	return outp;
     }
+    private static int CountContinuousDots(string str, int startIndex){
+	int c = 0;
+	for(int i = startIndex; i < str.Length; i++){
+	    if(str[i] == '.') c++;
+	    else if(c != 0) return c;
+	}
+	return c;
+    }
 }
 
 public struct Token{
@@ -127,7 +164,7 @@ public struct Token{
 
     public Token(TokenGroup _tokenGroup, string _content){
 	tokenGroup = _tokenGroup;
-	content = _content.Replace('\t', ' ');
+	content = _content;
 	length = _content.Length;
     }
     public string ToString(bool displayTokenGroup = false){
@@ -141,16 +178,17 @@ public struct Token{
     // checks top to bottom, index must be the same as value of associated TokenGroup
     public static (string s, bool splittable)[] tokenGroupDefinitions = new (string s, bool splittable)[] {
 	(" \t\n", false),
-	("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_", false),
+	("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._", false),
 	("()[]{}<>", true),
-	(".,;+-*/^&|!~%", true),
+	(",;+-*/^&|!~%", true),
     };
     // checks top to bottom
-    public static string[] stringStarters = new string[] {
-	"'''",
-	"\"",
-	"'",
-	"`",
+    public static (string start, string end)[] stringStarters = new (string start, string end)[] {
+	("<", ">"),
+	("'''", "'''"),
+	("\"", "\""),
+	("'", "'"),
+	("`", "`"),
     };
 
     // returns first token in str
@@ -163,8 +201,8 @@ public struct Token{
 
 	// run string test
 	for(int i = 0; i < stringStarters.Length; i++){
-	    if(str.StartsWith(stringStarters[i])){
-		int index = str.IndexOf(stringStarters[i]);
+	    if(str.StartsWith(stringStarters[i].start)){
+		int index = str.IndexOf(stringStarters[i].end);
 
 		// avoid escaped characters (hopefully)
 		while(index < 1 || str[index - 1] == '\\'){
@@ -174,7 +212,7 @@ public struct Token{
 			while(ind > -1 && str[ind--] == '\\') isOdd = !isOdd;
 			if(!isOdd) goto _LoopExit;
 		    }
-		    index = str.IndexOf(stringStarters[i], index + 1);
+		    index = str.IndexOf(stringStarters[i].end, index + 1);
 		}
 _LoopExit:
 
@@ -185,7 +223,7 @@ _LoopExit:
 		}
 
 		// return string
-		string stringString = str.Substring(0, index + stringStarters[i].Length);
+		string stringString = str.Substring(0, index + stringStarters[i].end.Length);
 		str = str.Remove(0, stringString.Length);
 		return new Token(TokenGroup.String, stringString);
 	    }
