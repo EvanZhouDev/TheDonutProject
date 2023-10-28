@@ -72,5 +72,10 @@
         "name": "Rue",
         "github": "IOKG04",
         "run": "gcc -o donut donut.s -lc -lm && ./donut"
+    },
+    "v": {
+        "name": "Drake Fletcher",
+        "github": "drakeerv",
+        "run": "v run donut.v"
     }
 }
