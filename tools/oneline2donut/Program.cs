@@ -6,13 +6,14 @@ using System.Linq;
 /*
 
 c = coded
-r = rework
+r = reworking
 x = checked / done
 
 [r] Parse
- [r] Detect different groups
- [r] Detect strings
-  [r] Make escaping characters possible
+ [x] Convert to primitives
+ [ ] Merge primitives into tokens
+ [ ] Detect strings
+  [ ] Make escaping characters possible
 [x] Donutify input
  [x] Generate donut template
  [x] Map input onto template without splitting groups
@@ -27,7 +28,7 @@ Errors marked with `(I)` are internal. Please open an issue and describe what ex
 namespace oneline2donut;
 
 public class Program{
-    public static Token[]	tokens;
+    public static Primitive[]	primitives;
     public static int		totalCharCount;
     public static string[]	donutTemplate;
     public static string	outp;
@@ -36,7 +37,12 @@ public class Program{
 	// TODO: add error for too few arguments
 
 	string baseCode = File.ReadAllText(args[0]);
-	
+
+	primitives = Primitive.FindPrimitives(baseCode);
+	Console.WriteLine(baseCode);
+	foreach(Primitive p in primitives) Console.WriteLine(p.ToString(true));
+
+	/*
 	// filter baseCode
 	if(baseCode.Contains('\n')) baseCode = baseCode.Replace("\n", " ");
 	baseCode = baseCode.Replace('\t', ' ');
@@ -46,7 +52,7 @@ public class Program{
 	tokens = Token.Parse(baseCode);
 
 	// get donut template
-_GenerateDonut:
+_generate_donut:
 	donutTemplate = GenerateDonut();
 	// throw error on non-existant donutTemplate
 	if(donutTemplate.Length < 1){
@@ -66,7 +72,7 @@ _GenerateDonut:
 		// retry with bigger donut on donutTemplate being too small
 		if(currentRow >= donutTemplate.Length){
 		    totalCharCount += 100;
-		    goto _GenerateDonut;
+		    goto _generate_donut;
 		}
 	    }
 
@@ -119,6 +125,7 @@ _GenerateDonut:
 	}
 
 	Console.WriteLine(outp);
+	*/
 
 	return 0;
     }
@@ -174,7 +181,7 @@ public struct Primitive{
 
     // all strings which match a specific primitive group
     // has to be in same order as PrimitiveGroup enum and in order of first to be checked to last
-    // if nothing matches
+    // if nothing matches PrimitiveGroup.Other is given
     public static string[][] primitiveGroupMatches = new string[][]{
 	new string[] {" ", "\t", "\n"},
 	new string[] {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
@@ -184,9 +191,39 @@ public struct Primitive{
 	new string[] {"(", ")", "[", "]", "{", "}"},
 	new string[] {"'''", "\"", "'"},
 	new string[] {"\\"},
+	new string[] {"_"},
     };
-}
+    // finds first Primitive in str and removes is from str
+    public static Primitive FindFirstPrimitive(ref string str){
+	// setup parameters for no matches
+	PrimitiveGroup pg = PrimitiveGroup.other;
+	string c = str[0].ToString();;
 
+	// find matching PrimitiveGroup
+	for(int i = 0; i < primitiveGroupMatches.Length; i++){
+	    for(int j = 0; j < primitiveGroupMatches[i].Length; j++){
+		// if matches, set parameters and return
+		if(str.StartsWith(primitiveGroupMatches[i][j])){
+		    pg = (PrimitiveGroup)i;
+		    c = primitiveGroupMatches[i][j];
+		    goto _find_first_primitive_return;
+		}
+	    }
+	}
+
+_find_first_primitive_return:
+	// remove first Primitive from string and return
+	str = str.Remove(0, c.Length);
+	return new Primitive(pg, c);
+    }
+    // finds and returns a list of all Primitives in str
+    public static Primitive[] FindPrimitives(string str){
+	List<Primitive> outp = new List<Primitive>();
+	while(str.Length > 0) outp.Add(FindFirstPrimitive(ref str));
+	return outp.ToArray();
+    }
+}
+// list of all groups a Primitive can be a part of
 public enum PrimitiveGroup : byte{
     space		= 0,   // " ", "\t", "\n"
     letter		= 1,   // alphabetic characters
@@ -196,6 +233,26 @@ public enum PrimitiveGroup : byte{
     brackets		= 5,   // normal, square and curly brackets
     stringStarters	= 6,   // "'''", "\"", "'", other common string starters
     escape		= 7,   // "\\", other common escape characters
+    underscore		= 8,   // "_"
+    other		= 255, // characters not assigned to another group
+}
+
+// list of all groups a Token can be a part of
+// superset of PrimitiveGroup
+public enum TokenGroup : byte{
+    space		= 0,   // " ", "\t", "\n"
+    letter		= 1,   // alphabetic characters
+    digit		= 2,   // numeric characters
+    period		= 3,   // "."
+    discriminator	= 4,   // ";", ","
+    brackets		= 5,   // normal, square and curly brackets
+    stringStarters	= 6,   // "'''", "\"", "'", other common string starters
+    escape		= 7,   // "\\", other common escape characters
+    underscore		= 8,   // "_"
+    string_		= 128, // strings seperated by stringStarters				(stringStarters + [whatever]? + stringStarters)
+			       // (with underscore at end so it isnt the same as the keyword)
+    number		= 129, // integer or floating point number				(digits + period? + digits? | underscore)
+    word		= 130, // keyword or variable/function name				(letters + digits? + underscore?)
     other		= 255, // characters not assigned to another group
 }
 

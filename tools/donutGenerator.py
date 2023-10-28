@@ -1,7 +1,6 @@
 import math
 import sys
 
-
 def printcircle(r, buffer, buffer_size, c):
     outp = 0
     center = buffer_size // 2
@@ -12,7 +11,6 @@ def printcircle(r, buffer, buffer_size, c):
                 buffer[x + buffer_size * y] = c
                 outp += 1
     return outp
-
 
 argv = sys.argv
 
