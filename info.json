@@ -72,5 +72,11 @@
         "name": "Rue",
         "github": "IOKG04",
         "run": "gcc -o donut donut.s -lc -lm && ./donut"
+    },
+    "rs": {
+        "name": "TJ Moody",
+        "github": "tj-moody",
+        "repo": "https://github.com/tj-moody/donut.rs",
+        "run": "cargo +nightly -Zscript donut.rs 2>/dev/null"
     }
 }
