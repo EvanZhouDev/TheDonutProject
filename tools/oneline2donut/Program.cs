@@ -6,15 +6,16 @@ using System.Linq;
 /*
 
 c = coded
+r = rework
 x = checked / done
 
-[x] Parse
- [x] Detect different groups
- [x] Detect strings
-  [x] Make escaping characters possible
-[ ] Donutify input
+[r] Parse
+ [r] Detect different groups
+ [r] Detect strings
+  [r] Make escaping characters possible
+[x] Donutify input
  [x] Generate donut template
- [ ] Map input onto template without splitting groups
+ [x] Map input onto template without splitting groups
 [ ] Add arguments
  [ ] Defineable groups
 [ ] Add error messages where applicable
@@ -142,7 +143,7 @@ _GenerateDonut:
 		}
 	    }
 	    totalCharCount += 50;
-	} while(c < totalCharCount); //Make sure enough characters exist
+	} while(c < totalCharCount); // make sure enough characters exist
 
 	totalCharCount -= 50;
 	return outp;
@@ -157,6 +158,48 @@ _GenerateDonut:
     }
 }
 
+// primitives are single letters (or rarely multiple letters) that serve a specific function
+// different kinds of primitives are assumed to be combinable in specific ways to create tokens
+public struct Primitive{
+    public PrimitiveGroup	primitiveGroup;
+    public string		content;
+    public string ToString(bool showGroup = false){
+	string outp = showGroup ? "{ \"group\": \"" + primitiveGroup.ToString() + "\", \"content\": \"" + content + "\" }" : content;
+	return outp;
+    }
+    public Primitive(PrimitiveGroup _primitiveGroup, string _content){
+	primitiveGroup = _primitiveGroup;
+	content = _content;
+    }
+
+    // all strings which match a specific primitive group
+    // has to be in same order as PrimitiveGroup enum and in order of first to be checked to last
+    // if nothing matches
+    public static string[][] primitiveGroupMatches = new string[][]{
+	new string[] {" ", "\t", "\n"},
+	new string[] {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
+	new string[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"},
+	new string[] {"."},
+	new string[] {";", ","},
+	new string[] {"(", ")", "[", "]", "{", "}"},
+	new string[] {"'''", "\"", "'"},
+	new string[] {"\\"},
+    };
+}
+
+public enum PrimitiveGroup : byte{
+    space		= 0,   // " ", "\t", "\n"
+    letter		= 1,   // alphabetic characters
+    digit		= 2,   // numeric characters
+    period		= 3,   // "."
+    discriminator	= 4,   // ";", ","
+    brackets		= 5,   // normal, square and curly brackets
+    stringStarters	= 6,   // "'''", "\"", "'", other common string starters
+    escape		= 7,   // "\\", other common escape characters
+    other		= 255, // characters not assigned to another group
+}
+
+/*
 public struct Token{
     public TokenGroup	tokenGroup;
     public string	content;
@@ -180,11 +223,10 @@ public struct Token{
 	(" \t\n", false),
 	("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._", false),
 	("()[]{}<>", true),
-	(",;+-*/^&|!~%", true),
+	(",;+-*^/&|!~%", true),
     };
     // checks top to bottom
     public static (string start, string end)[] stringStarters = new (string start, string end)[] {
-	("<", ">"),
 	("'''", "'''"),
 	("\"", "\""),
 	("'", "'"),
@@ -279,4 +321,4 @@ public enum TokenGroup : byte{
     Group_13		= 13,
     String		= 254,	// assumed to be unsplittable
     Misc		= 255,	// assumed to be splittable
-}
+}*/
