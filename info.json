@@ -33,15 +33,20 @@
     },
     "ps1": {
         "name": "Joe Skeen",
-        "github": "joeskeen"
+        "github": "joeskeen",
+        "run": "pwsh donut.ps1",
+        "description": "Not compatible with Windows PowerShell 5.1 (which comes with Windows); you need the cross-platform PowerShell 7+ (separate install)."
     },
     "🍇": {
         "name": "Joe Skeen",
-        "github": "joeskeen"
+        "github": "joeskeen",
+        "run": "emojicodec donut.🍇 -o donut-emojicode && ./donut-emojicode",
+        "description": "Depending on your computer's font, the code will look more or less donut shaped. It turns out that fixed-width fonts aren't fixed-width for emoji characters."
     },
     "php": {
         "name": "Joe Skeen",
-        "github": "joeskeen"
+        "github": "joeskeen",
+        "description": "All the donut rendering code is in PHP, so the web page must request each frame from the server."
     },
     "zig": {
         "name": "Kacey Kniffen",
@@ -53,7 +58,8 @@
     },
     "svg": {
         "name": "Joe Skeen",
-        "github": "joeskeen"
+        "github": "joeskeen",
+        "description": "This is the simplest possible animated SVG that when rendered resembles a spinning donut, made as a proof-of-concept. A much more verbose version exists which implements the ASCII representation."
     },
     "lua": {
         "name": "Claire Lacroix",
