@@ -189,7 +189,7 @@ public struct Token{
 	new string[] {"."},
 	new string[] {";", ","},
 	new string[] {"(", ")", "[", "]", "{", "}"},
-	new string[] {"'''", "\"", "'"},
+	new string[] {"'''", "\"", "'", "`"},
 	new string[] {"\\"},
 	new string[] {"_"},
     };
