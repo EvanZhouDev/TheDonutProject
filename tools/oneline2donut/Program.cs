@@ -34,7 +34,10 @@ public class Program{
     public static string	outp;
 
     public static int Main(string[] args){
-	// TODO: add error for too few arguments
+	if(args.Length < 1){
+	    Console.WriteLine("Error 4: Not enough arguments");
+	    throw new Exception("Error 4: Not enough arguments");
+	}
 
 	string baseCode = File.ReadAllText(args[0]);
 	
@@ -84,14 +87,6 @@ _generate_donut:
 	    //get fitable tokens
 	    dotsLeft = CountContinuousDots(donutTemplate[currentRow], currentChar);
 	    startToken = currentToken;
-	    /*int tokensLength = tokens[currentToken].content.Length;
-	    do{
-		currentToken++;
-		if(currentToken >= tokens.Count){
-		    break;
-		}
-		tokensLength += tokens[currentToken].content.Length;
-	    } while(currentToken + 1 < tokens.Count && tokensLength + tokens[currentToken + 1].content.Length <= dotsLeft);*/
 	    int tokensLength = 0;
 	    while(tokensLength <= dotsLeft && currentToken < tokens.Count){
 		tokensLength += tokens[currentToken].content.Length;
@@ -132,8 +127,6 @@ _generate_donut:
 	}
 
 	Console.WriteLine(outp);
-	Console.WriteLine();
-	foreach(string str in donutTemplate) Console.WriteLine(str);
 
 	return 0;
     }
