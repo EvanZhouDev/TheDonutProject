@@ -6,7 +6,6 @@ using System.Linq;
 /*
 
 TODO:
- Parse strings
  Make that thing with the formulars work
  Press into donut shape
  Test
@@ -16,14 +15,14 @@ c = coded
 r = reworking
 x = checked / done
 
-[r] Parse
+[x] Parse
  [x] Convert to primitives
  [x] Detect strings
   [x] Make escaping characters possible
- [ ] Merge primitives into tokens
-[x] Donutify input
+ [x] Merge primitives into tokens
+[r] Donutify input
  [x] Generate donut template
- [x] Map input onto template without splitting groups
+ [r] Map input onto template without splitting groups
 [ ] Add arguments
  [ ] Defineable groups
 [ ] Add error messages where applicable
@@ -50,6 +49,9 @@ public class Program{
 	foreach(Token t in tokens) Console.WriteLine(t.ToString(true));
 	Console.WriteLine("\nPARSING STRINGS\n");
 	Token.ParseStrings(ref tokens);
+	foreach(Token t in tokens) Console.WriteLine(t.ToString(true));
+	Console.WriteLine("\nAPPLYING FORMULARS\n");
+	Token.ApplyFormulars(ref tokens);
 	foreach(Token t in tokens) Console.WriteLine(t.ToString(true));
 
 	/*
@@ -271,6 +273,32 @@ _find_first_primitive_return:
 	bool outp = false;
 	while(--i > 0 && tokens[i].tokenGroup == TokenGroup.escape) outp = !outp;
 	return outp;
+    }
+    public static int ApplyFormulars(ref List<Token> tokens){
+	int formularsApplied = 0;
+	(int index, int formular) firstFoundFormular = FindFirstFormularIndex(tokens);
+	while(firstFoundFormular.index != -1){
+	    string c = "";
+	    for(int i = 0; i < tokenGroupFormulars[firstFoundFormular.formular].formular.Length; i++) c += tokens[i + firstFoundFormular.index].content;
+	    Token newToken = new Token(tokenGroupFormulars[firstFoundFormular.formular].result, c);
+	    tokens.RemoveRange(firstFoundFormular.index, tokenGroupFormulars[firstFoundFormular.formular].formular.Length);
+	    tokens.Insert(firstFoundFormular.index, newToken);
+	    firstFoundFormular = FindFirstFormularIndex(tokens);
+	}
+	return formularsApplied;
+    }
+    private static (int index, int formular) FindFirstFormularIndex(List<Token> tokens){
+	for(int i = 0; i < tokens.Count; i++){
+	    for(int j = 0; j < tokenGroupFormulars.Length; j++){
+		if(i + tokenGroupFormulars[j].formular.Length >= tokens.Count) continue;
+		bool isMatch = true;
+		for(int k = 0; k < tokenGroupFormulars[j].formular.Length; k++){
+		    if(tokens[i + k].tokenGroup != tokenGroupFormulars[j].formular[k]){ isMatch = false; break; }
+		}
+		if(isMatch) return (i, j);
+	    }
+	}
+	return (-1, -1);
     }
 }
 // list of all groups a Token can be a part of
