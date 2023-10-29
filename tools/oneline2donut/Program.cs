@@ -5,12 +5,6 @@ using System.Linq;
 
 /*
 
-TODO:
- Make that thing with the formulars work
- Press into donut shape
- Test
- pr :D
-
 c = coded
 r = reworking
 x = checked / done
@@ -20,9 +14,9 @@ x = checked / done
  [x] Detect strings
   [x] Make escaping characters possible
  [x] Merge primitives into tokens
-[r] Donutify input
+[x] Donutify input
  [x] Generate donut template
- [r] Map input onto template without splitting groups
+ [x] Map input onto template without splitting groups
 [ ] Add arguments
  [ ] Defineable groups
 [ ] Add error messages where applicable
@@ -43,25 +37,17 @@ public class Program{
 	// TODO: add error for too few arguments
 
 	string baseCode = File.ReadAllText(args[0]);
-
-	tokens = Token.FindPrimitives(baseCode);
-	Console.WriteLine(baseCode);
-	foreach(Token t in tokens) Console.WriteLine(t.ToString(true));
-	Console.WriteLine("\nPARSING STRINGS\n");
-	Token.ParseStrings(ref tokens);
-	foreach(Token t in tokens) Console.WriteLine(t.ToString(true));
-	Console.WriteLine("\nAPPLYING FORMULARS\n");
-	Token.ApplyFormulars(ref tokens);
-	foreach(Token t in tokens) Console.WriteLine(t.ToString(true));
-
-	/*
+	
 	// filter baseCode
-	if(baseCode.Contains('\n')) baseCode = baseCode.Replace("\n", " ");
-	baseCode = baseCode.Replace('\t', ' ');
+	baseCode = baseCode.Replace("\n", " ");
+	baseCode = baseCode.Replace("\t", " ");
+	while(baseCode.Contains("  ")) baseCode = baseCode.Replace("  ", " ");
+	while(baseCode.EndsWith(' ')) baseCode = baseCode.Remove(baseCode.Length - 1);
 
-	// get tokens and total character count
-	totalCharCount = baseCode.Length;
-	tokens = Token.Parse(baseCode);
+	// parse baseCode
+	tokens = Token.FindPrimitives(baseCode);
+	Token.ParseStrings(ref tokens);
+	Token.ApplyFormulars(ref tokens);
 
 	// get donut template
 _generate_donut:
@@ -75,7 +61,7 @@ _generate_donut:
 	// map tokens onto donut
 	int currentChar = 0, currentRow = 0, currentToken = 0, startToken, dotsLeft;
 	outp = "";
-	while(currentToken < tokens.Length){
+	while(currentToken < tokens.Count){
 	    // test if linebreak is needed
 	    if(currentChar >= donutTemplate[currentRow].Length){
 		currentRow++;
@@ -97,25 +83,25 @@ _generate_donut:
 
 	    //get fitable tokens
 	    dotsLeft = CountContinuousDots(donutTemplate[currentRow], currentChar);
-	    int tokensLength = tokens[currentToken].length;
+	    int tokensLength = tokens[currentToken].content.Length;
 	    startToken = currentToken;
 	    do{
 		currentToken++;
-		if(currentToken >= tokens.Length){
+		if(currentToken >= tokens.Count){
 		    break;
 		}
-		tokensLength += tokens[currentToken].length;
-	    } while(tokensLength <= dotsLeft && tokens[currentToken].content != "</text>");
-	    if(currentToken < tokens.Length) tokensLength -= tokens[currentToken].length;
+		tokensLength += tokens[currentToken].content.Length;
+	    } while(tokensLength <= dotsLeft);
+	    if(currentToken < tokens.Count) tokensLength -= tokens[currentToken].content.Length;
 
 	    // get extra spaces and spacesLeft/tokensLength
-	    int spacesLeft = dotsLeft - tokensLength + tokens[currentToken - 1].length;
+	    int spacesLeft = dotsLeft - tokensLength + tokens[currentToken - 1].content.Length;
 	    double sL_tL = spacesLeft / (double)tokensLength;	// explicit double division, i hate it
 	    double currentSpacesAmount = 0;
 	    
 	    // print tokens with spaces
 	    for(int i = startToken; i < currentToken; i++){
-		currentChar += tokens[i].length;
+		currentChar += tokens[i].content.Length;
 		outp += tokens[i].content;
 		currentSpacesAmount += sL_tL;
 		while(currentSpacesAmount >= 1 && i < currentToken - 1){
@@ -137,7 +123,8 @@ _generate_donut:
 	}
 
 	Console.WriteLine(outp);
-	*/
+	Console.WriteLine();
+	foreach(string str in donutTemplate) Console.WriteLine(str);
 
 	return 0;
     }
@@ -192,7 +179,7 @@ public struct Token{
 
     // all strings which match a specific primitive group
     // has to be in same order as PrimitiveGroup enum and in order of first to be checked to last
-    // if nothing matches PrimitiveGroup.Other is given
+    // if nothing matches TokenGroup.Other is given
     public static string[][] primitiveGroupMatches = new string[][]{
 	new string[] {" ", "\t", "\n"},
 	new string[] {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
@@ -239,15 +226,18 @@ _find_first_primitive_return:
     // before this is used, strings have to be found and made into seperate tokens
     public static (TokenGroup[] formular, TokenGroup result)[] tokenGroupFormulars = new (TokenGroup[] formular, TokenGroup result)[]{
 	// words
-	(new TokenGroup[] {TokenGroup.word, TokenGroup.letter}, TokenGroup.word),	// words can be extended by letters
-	(new TokenGroup[] {TokenGroup.word, TokenGroup.digit}, TokenGroup.word),	// words can be extended by digits
-	(new TokenGroup[] {TokenGroup.word, TokenGroup.underscore}, TokenGroup.word),	// words can be extended by underscores
-	(new TokenGroup[] {TokenGroup.letter}, TokenGroup.word),			// letters are words
-	(new TokenGroup[] {TokenGroup.underscore}, TokenGroup.word),			// underscores are words
+	(new TokenGroup[] {TokenGroup.word, TokenGroup.letter}, TokenGroup.word),		// words can be extended by letters
+	(new TokenGroup[] {TokenGroup.word, TokenGroup.digit}, TokenGroup.word),		// words can be extended by digits
+	(new TokenGroup[] {TokenGroup.word, TokenGroup.underscore}, TokenGroup.word),		// words can be extended by underscores
+	(new TokenGroup[] {TokenGroup.letter}, TokenGroup.word),				// letters are words
+	(new TokenGroup[] {TokenGroup.underscore}, TokenGroup.word),				// underscores are words
 	// numbers
-	(new TokenGroup[] {TokenGroup.number, TokenGroup.digit}, TokenGroup.number),	// numbers can be extended by digits
-	(new TokenGroup[] {TokenGroup.number, TokenGroup.period}, TokenGroup.number),	// numbers can be extended by periods
-	(new TokenGroup[] {TokenGroup.digit}, TokenGroup.number),			// digits are numbers
+	(new TokenGroup[] {TokenGroup.number, TokenGroup.digit}, TokenGroup.number),		// numbers can be extended by digits
+	(new TokenGroup[] {TokenGroup.number, TokenGroup.period}, TokenGroup.number),		// numbers can be extended by periods
+	(new TokenGroup[] {TokenGroup.number, TokenGroup.underscore}, TokenGroup.number),	// numbers can be extended by underscores
+	(new TokenGroup[] {TokenGroup.digit}, TokenGroup.number),				// digits are numbers
+	// assume unsplittable others
+	(new TokenGroup[] {TokenGroup.other, TokenGroup.other}, TokenGroup.other),		// others can be extended by others
     };
     // parses all strings in tokens and switches them with a string_ token
     // returns amount of strings found
