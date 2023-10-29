@@ -83,33 +83,42 @@ _generate_donut:
 
 	    //get fitable tokens
 	    dotsLeft = CountContinuousDots(donutTemplate[currentRow], currentChar);
-	    int tokensLength = tokens[currentToken].content.Length;
 	    startToken = currentToken;
+	    /*int tokensLength = tokens[currentToken].content.Length;
 	    do{
 		currentToken++;
 		if(currentToken >= tokens.Count){
 		    break;
 		}
 		tokensLength += tokens[currentToken].content.Length;
-	    } while(tokensLength <= dotsLeft);
-	    if(currentToken < tokens.Count) tokensLength -= tokens[currentToken].content.Length;
+	    } while(currentToken + 1 < tokens.Count && tokensLength + tokens[currentToken + 1].content.Length <= dotsLeft);*/
+	    int tokensLength = 0;
+	    while(tokensLength <= dotsLeft && currentToken < tokens.Count){
+		tokensLength += tokens[currentToken].content.Length;
+		currentToken++;
+	    }
+	    if(currentToken > startToken + 1){
+		currentToken--;
+		tokensLength -= tokens[currentToken].content.Length;
+	    }
 
 	    // get extra spaces and spacesLeft/tokensLength
-	    int spacesLeft = dotsLeft - tokensLength + tokens[currentToken - 1].content.Length;
-	    double sL_tL = spacesLeft / (double)tokensLength;	// explicit double division, i hate it
+	    int spacesLeft = dotsLeft - tokensLength;
+	    double sL_tL = spacesLeft / (double)(currentToken - 1 > startToken ? tokensLength - tokens[currentToken - 1].content.Length : tokensLength); // explicit double division, i hate it
 	    double currentSpacesAmount = 0;
 	    
 	    // print tokens with spaces
 	    for(int i = startToken; i < currentToken; i++){
 		currentChar += tokens[i].content.Length;
 		outp += tokens[i].content;
-		currentSpacesAmount += sL_tL;
-		while(currentSpacesAmount >= 1 && i < currentToken - 1){
+		currentSpacesAmount += sL_tL * tokens[i].content.Length;
+		while(currentSpacesAmount >= 0.95 && i < currentToken - 1){
 		    currentChar++;
 		    outp += ' ';
 		    currentSpacesAmount--;
 		}
 	    }
+	    if(currentChar < donutTemplate[currentRow].Length && donutTemplate[currentRow][currentChar] == '.') currentChar += CountContinuousDots(donutTemplate[currentRow], currentChar);
 	}
 	// print rest of donut
 	while(currentRow < donutTemplate.Length){
