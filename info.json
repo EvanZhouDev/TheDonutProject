@@ -72,5 +72,9 @@
         "name": "Rue",
         "github": "IOKG04",
         "run": "gcc -o donut donut.s -lc -lm && ./donut"
+    },
+    "bas": {
+        "name": "Erik Schreiner",
+        "github": "ErikSchreiner"
     }
 }
