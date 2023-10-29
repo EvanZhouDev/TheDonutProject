@@ -15,9 +15,9 @@
  o+5)d:=l*g*o-w*e            m:= int(40+30*q*(
   f*g*n-d*c))v:=int(12+15*q*(f*g*c+d*n))x:=m+
    80*v h:=int(8*((w*e-l*r*o)*n-l*r*e-w*o-f*
-    r*c))if v<22&& v>=0&& m>=0&& m<79&& q>t
-     [x]{t[x]=q s[x]=".,-~:;=!*#$@".split(
-       "") [if h>0{h}else{0}]}}} print("
+    r*c))if v<22&& v>=0&& m>=0&& m<79 && q>
+     t[x]{t[x]=q s[x]=".,-~:;=!*#$@".split
+       ("")[if h>0{h}else{0}]}}} print("
          \x1b[J\x1b[H"+join("",s))}}/*
             V-Lang  0.4.2  (b9d0aed)
                  by drakeerv*/
