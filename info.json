@@ -78,5 +78,9 @@
         "github": "tj-moody",
         "repo": "https://github.com/tj-moody/donut.rs",
         "run": "cargo +nightly -Zscript donut.rs 2>/dev/null"
+    },
+    "bas": {
+        "name": "Erik Schreiner",
+        "github": "ErikSchreiner"
     }
 }
