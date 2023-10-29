@@ -79,6 +79,10 @@
         "github": "IOKG04",
         "run": "gcc -o donut donut.s -lc -lm && ./donut"
     },
+    "kt": {
+        "name": "Abdallah Mehiz",
+        "github": "AbdallahMehiz"
+    },
     "rs": {
         "name": "TJ Moody",
         "github": "tj-moody",
