@@ -93,6 +93,11 @@
         "name": "Erik Schreiner",
         "github": "ErikSchreiner"
     },
+    "v": {
+        "name": "Drake Fletcher",
+        "github": "drakeerv",
+        "run": "v run donut.v"
+    },
     "bf": {
         "name": "Drake Fletcher",
         "github": "drakeerv",
