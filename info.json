@@ -103,6 +103,11 @@
         "github": "drakeerv",
         "run": "brainwhat donut.bf"
     },
+    "swift": {
+        "name": "Drake Fletcher",
+        "github": "drakeerv",
+        "run": "swift donut.swift"
+    },
     "dart": {
         "name": "Drake Fletcher",
         "github": "drakeerv",
