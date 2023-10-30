@@ -65,10 +65,11 @@
         "name": "Claire Lacroix",
         "github": "Ex-Opera"
     },
-    "jsfuck": {
+    "jsfuck.js": {
         "name": "Rue",
         "github": "IOKG04",
-        "run": "node donut.jsfuck"
+        "run": "node donut.jsfuck",
+	"description": "jsfuck implementation of donut.js made using jsfuck.com"
     },
     "html": {
         "name": "The Color Blocks",
