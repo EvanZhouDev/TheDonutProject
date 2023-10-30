@@ -102,5 +102,10 @@
         "name": "Drake Fletcher",
         "github": "drakeerv",
         "run": "brainwhat donut.bf"
+    },
+    "ruby": {
+        "name": "Drake Fletcher",
+        "github": "drakeerv",
+        "run": "ruby donut.rb"
     }
 }
