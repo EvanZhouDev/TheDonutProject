@@ -107,5 +107,15 @@
         "name": "Drake Fletcher",
         "github": "drakeerv",
         "run": "ruby donut.rb"
+    },
+    "swift": {
+        "name": "Drake Fletcher",
+        "github": "drakeerv",
+        "run": "swift donut.swift"
+    },
+    "dart": {
+        "name": "Drake Fletcher",
+        "github": "drakeerv",
+        "run": "dart donut.dart"
     }
 }
