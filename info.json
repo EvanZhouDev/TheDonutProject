@@ -117,5 +117,10 @@
         "name": "Drake Fletcher",
         "github": "drakeerv",
         "run": "dart donut.dart"
+    },
+    "pl": {
+        "name": "Drake Fletcher",
+        "github": "drakeerv",
+        "run": "perl donut.pl"
     }
 }
