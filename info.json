@@ -17,7 +17,8 @@
     "libless.c": {
         "name": "Andy Sloane",
         "github": "a1k0n",
-        "run": "gcc -o donut donut.libless.c -lc && ./donut"
+        "run": "gcc -o donut donut.libless.c -lc && ./donut",
+        "description": "A donut in c that doesnt use the math library"
     },
     "cs": {
         "name": "Rue",
