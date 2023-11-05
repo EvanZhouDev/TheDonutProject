@@ -140,5 +140,10 @@
         "name": "Drake Fletcher",
         "github": "drakeerv",
         "run": "perl donut.pl"
+    },
+    "exs": {
+        "name": "Źmićer Rubinštejn",
+        "github": "virviil",
+        "run": "elixir donut.exs"
     }
 }
