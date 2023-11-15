@@ -146,6 +146,12 @@
         "github": "virviil",
         "run": "elixir donut.exs"
     },
+    "sb3": {
+	    "name": "NameGoesThere"
+	    "github": "NameGoesThere"
+    	"run": "open in turbowarp.org (normal scratch is too slow)"
+	    "description": "donut in scratch lol"
+    },
     "ml": {
         "name": "Vianney Hervy",
         "gitlab": "sullyvian",
