@@ -145,5 +145,17 @@
         "name": "Źmićer Rubinštejn",
         "github": "virviil",
         "run": "elixir donut.exs"
+    },
+    "ml": {
+        "name": "Vianney Hervy",
+        "gitlab": "sullyvian",
+        "github": "sullyvian",
+        "run": "ocaml donut.ml"
+    },
+    "adb": {
+        "name": "Vianney Hervy",
+        "gitlab": "sullyvian",
+        "github": "sullyvian",
+        "run": "gnatmake donut.adb && ./donut"
     }
 }
