@@ -147,9 +147,21 @@
         "run": "elixir donut.exs"
     },
     "sb3": {
-	"name": "NameGoesThere"
-	"github": "NameGoesThere"
+	    "name": "NameGoesThere"
+	    "github": "NameGoesThere"
     	"run": "open in turbowarp.org (normal scratch is too slow)"
-	"description": "donut in scratch lol"
+	    "description": "donut in scratch lol"
+    },
+    "ml": {
+        "name": "Vianney Hervy",
+        "gitlab": "sullyvian",
+        "github": "sullyvian",
+        "run": "ocaml donut.ml"
+    },
+    "adb": {
+        "name": "Vianney Hervy",
+        "gitlab": "sullyvian",
+        "github": "sullyvian",
+        "run": "gnatmake donut.adb && ./donut"
     }
 }
