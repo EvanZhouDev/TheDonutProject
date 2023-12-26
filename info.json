@@ -1,24 +1,47 @@
 {
-    "js": {
-        "name": "Evan Zhou",
-        "github": "EvanZhouDev",
-        "run": "node donut.js"
+    "adb": {
+        "name": "Vianney Hervy",
+        "gitlab": "sullyvian",
+        "github": "sullyvian",
+        "run": "gnatmake donut.adb && ./donut"
     },
-    "py": {
-        "name": "Evan Zhou",
-        "github": "EvanZhouDev",
-        "run": "python3 donut.py"
+    "bas": {
+        "name": "Erik Schreiner",
+        "github": "ErikSchreiner"
+    },
+    "bf": {
+        "name": "Drake Fletcher",
+        "github": "drakeerv",
+        "run": "brainwhat donut.bf"
     },
     "c": {
         "name": "Andy Sloane",
         "github": "a1k0n",
         "run": "gcc -o donut donut.c -lm -lc && ./donut"
     },
-    "libless.c": {
-        "name": "Andy Sloane",
-        "github": "a1k0n",
-        "run": "gcc -o donut donut.libless.c -lc && ./donut",
-        "description": "A donut in c that doesnt use the math library"
+    "cpp": {
+        "name": "Amaar Chughtai",
+        "github": "DragonXDev"
+    },
+    "cs": {
+        "name": "Rue",
+        "github": "IOKG04",
+        "run": "mkdir donut && cd donut && dotnet new console && cp ../donut.cs Program.cs && dotnet run"
+    },
+    "dart": {
+        "name": "Drake Fletcher",
+        "github": "drakeerv",
+        "run": "dart donut.dart"
+    },
+    "exs": {
+        "name": "\u0179mi\u0107er Rubin\u0161tejn",
+        "github": "virviil",
+        "run": "elixir donut.exs"
+    },
+    "f": {
+        "name": "Sirraide",
+        "github": "Sirraide",
+        "run": "gfortran donut.f -std=legacy -o donutf && ./donutf"
     },
     "floatless.c": {
         "name": "Andy Sloane",
@@ -26,131 +49,42 @@
         "run": "gcc -o donut donut.floatless.c -lc && ./donut",
         "description": "A donut in c that doesnt use the math library or floats"
     },
-    "cs": {
-        "name": "Rue",
-        "github": "IOKG04",
-        "run": "mkdir donut && cd donut && dotnet new console && cp ../donut.cs Program.cs && dotnet run"
-    },
-    "cpp": {
-        "name": "Amaar Chughtai",
-        "github": "DragonXDev"
-    },
     "go": {
         "name": "Evan Roos",
         "github": "j-Ewan"
-    },
-    "java": {
-        "name": "Joe Skeen",
-        "github": "joeskeen"
-    },
-    "f": {
-        "name": "Sirraide",
-        "github": "Sirraide",
-        "run": "gfortran donut.f -std=legacy -o donutf && ./donutf"
-    },
-    "ps1": {
-        "name": "Joe Skeen",
-        "github": "joeskeen",
-        "run": "pwsh donut.ps1",
-        "description": "Not compatible with Windows PowerShell 5.1 (which comes with Windows); you need the cross-platform PowerShell 7+ (separate install)."
-    },
-    "🍇": {
-        "name": "Joe Skeen",
-        "github": "joeskeen",
-        "run": "emojicodec donut.🍇 -o donut-emojicode && ./donut-emojicode",
-        "description": "Depending on your computer's font, the code will look more or less donut shaped. It turns out that fixed-width fonts aren't fixed-width for emoji characters."
-    },
-    "php": {
-        "name": "Joe Skeen",
-        "github": "joeskeen",
-        "description": "All the donut rendering code is in PHP, so the web page must request each frame from the server."
-    },
-    "zig": {
-        "name": "Kacey Kniffen",
-        "github": "KaceyXam"
-    },
-    "pas": {
-        "name": "Joe Skeen",
-        "github": "joeskeen"
-    },
-    "svg": {
-        "name": "Joe Skeen",
-        "github": "joeskeen",
-        "description": "This is the simplest possible animated SVG that when rendered resembles a spinning donut, made as a proof-of-concept. A much more verbose version exists which implements the ASCII representation."
-    },
-    "lua": {
-        "name": "Claire Lacroix",
-        "github": "Ex-Opera"
-    },
-    "jsfuck.js": {
-        "name": "Rue",
-        "github": "IOKG04",
-        "run": "node donut.jsfuck.js",
-	"description": "jsfuck implementation of donut.js made using jsfuck.com"
     },
     "html": {
         "name": "The Color Blocks",
         "github": "thecolorblocks"
     },
-    "s": {
+    "java": {
+        "name": "Joe Skeen",
+        "github": "joeskeen"
+    },
+    "js": {
+        "name": "Evan Zhou",
+        "github": "EvanZhouDev",
+        "run": "node donut.js"
+    },
+    "jsfuck.js": {
         "name": "Rue",
         "github": "IOKG04",
-        "run": "gcc -o donut donut.s -lc -lm && ./donut"
+        "run": "node donut.jsfuck.js",
+        "description": "jsfuck implementation of donut.js made using jsfuck.com"
     },
     "kt": {
         "name": "Abdallah Mehiz",
         "github": "AbdallahMehiz"
     },
-    "rs": {
-        "name": "TJ Moody",
-        "github": "tj-moody",
-        "repo": "https://github.com/tj-moody/donut.rs",
-        "run": "cargo +nightly -Zscript donut.rs 2>/dev/null"
+    "libless.c": {
+        "name": "Andy Sloane",
+        "github": "a1k0n",
+        "run": "gcc -o donut donut.libless.c -lc && ./donut",
+        "description": "A donut in c that doesnt use the math library"
     },
-    "bas": {
-        "name": "Erik Schreiner",
-        "github": "ErikSchreiner"
-    },
-    "v": {
-        "name": "Drake Fletcher",
-        "github": "drakeerv",
-        "run": "v run donut.v"
-    },
-    "bf": {
-        "name": "Drake Fletcher",
-        "github": "drakeerv",
-        "run": "brainwhat donut.bf"
-    },
-    "ruby": {
-        "name": "Drake Fletcher",
-        "github": "drakeerv",
-        "run": "ruby donut.rb"
-    },
-    "swift": {
-        "name": "Drake Fletcher",
-        "github": "drakeerv",
-        "run": "swift donut.swift"
-    },
-    "dart": {
-        "name": "Drake Fletcher",
-        "github": "drakeerv",
-        "run": "dart donut.dart"
-    },
-    "pl": {
-        "name": "Drake Fletcher",
-        "github": "drakeerv",
-        "run": "perl donut.pl"
-    },
-    "exs": {
-        "name": "Źmićer Rubinštejn",
-        "github": "virviil",
-        "run": "elixir donut.exs"
-    },
-    "sb3": {
-	    "name": "NameGoesThere"
-	    "github": "NameGoesThere"
-    	"run": "open in turbowarp.org (normal scratch is too slow)"
-	    "description": "donut in scratch lol"
+    "lua": {
+        "name": "Claire Lacroix",
+        "github": "Ex-Opera"
     },
     "ml": {
         "name": "Vianney Hervy",
@@ -158,10 +92,76 @@
         "github": "sullyvian",
         "run": "ocaml donut.ml"
     },
-    "adb": {
-        "name": "Vianney Hervy",
-        "gitlab": "sullyvian",
-        "github": "sullyvian",
-        "run": "gnatmake donut.adb && ./donut"
+    "pas": {
+        "name": "Joe Skeen",
+        "github": "joeskeen"
+    },
+    "php": {
+        "name": "Joe Skeen",
+        "github": "joeskeen",
+        "description": "All the donut rendering code is in PHP, so the web page must request each frame from the server."
+    },
+    "pl": {
+        "name": "Drake Fletcher",
+        "github": "drakeerv",
+        "run": "perl donut.pl"
+    },
+    "ps1": {
+        "name": "Joe Skeen",
+        "github": "joeskeen",
+        "run": "pwsh donut.ps1",
+        "description": "Not compatible with Windows PowerShell 5.1 (which comes with Windows); you need the cross-platform PowerShell 7+ (separate install)."
+    },
+    "py": {
+        "name": "Evan Zhou",
+        "github": "EvanZhouDev",
+        "run": "python3 donut.py"
+    },
+    "rs": {
+        "name": "TJ Moody",
+        "github": "tj-moody",
+        "repo": "https://github.com/tj-moody/donut.rs",
+        "run": "cargo +nightly -Zscript donut.rs 2>/dev/null"
+    },
+    "ruby": {
+        "name": "Drake Fletcher",
+        "github": "drakeerv",
+        "run": "ruby donut.rb"
+    },
+    "s": {
+        "name": "Rue",
+        "github": "IOKG04",
+        "run": "gcc -o donut donut.s -lc -lm && ./donut"
+    },
+    "sb3": {
+        "name": "NameGoesThere",
+        "github": "NameGoesThere",
+        "run": "open in turbowarp.org (normal scratch is too slow)",
+        "description": "donut in scratch lol"
+    },
+    "svg": {
+        "name": "Joe Skeen",
+        "github": "joeskeen",
+        "description": "This is the simplest possible animated SVG that when rendered resembles a spinning donut, made as a proof-of-concept. A much more verbose version exists which implements the ASCII representation."
+    },
+    "swift": {
+        "name": "Drake Fletcher",
+        "github": "drakeerv",
+        "run": "swift donut.swift"
+    },
+    "v": {
+        "name": "Drake Fletcher",
+        "github": "drakeerv",
+        "run": "v run donut.v"
+    },
+    "zig": {
+        "name": "Kacey Kniffen",
+        "github": "KaceyXam"
+    },
+    "\ud83c\udf47": {
+        "name": "Joe Skeen",
+        "github": "joeskeen",
+        "run": "emojicodec donut.\ud83c\udf47 -o donut-emojicode && ./donut-emojicode",
+        "description": "Depending on your computer's font, the code will look more or less donut shaped. It turns out that fixed-width fonts aren't fixed-width for emoji characters."
     }
 }
