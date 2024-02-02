@@ -149,7 +149,7 @@
     "sb3": {
 	    "name": "NameGoesThere"
 	    "github": "NameGoesThere"
-    	"run": "open in turbowarp.org (normal scratch is too slow)"
+    	    "run": "start https://scratch.mit.edu/projects/923294305/"
 	    "description": "donut in scratch lol"
     },
     "ml": {
