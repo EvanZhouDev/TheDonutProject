@@ -163,5 +163,11 @@
         "gitlab": "sullyvian",
         "github": "sullyvian",
         "run": "gnatmake donut.adb && ./donut"
+    },
+    "pseudo": {
+	    "name": "Mustafa Aamir",
+	    "github": "MustafaAamir",
+	    "run": "./PseudoEngine2 donut.pseudo",
+	    "description": "build the interpreter from https://github.com/SingularityT3/PseudoEngine2, then run donut.pseudo"
     }
 }
