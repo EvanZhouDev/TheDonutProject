@@ -1,0 +1,95 @@
+DECLARE cosA, sinA, cosB, sinB, theta, theta_spacing, costheta, sintheta, phi, phi_spacing, cosphi, sinphi : REAL 
+DECLARE luminance_index, circlex, circley, x, y, z, ooz, L, R1, R2, K2, K1, A, B : REAL 
+DECLARE xp, yp, screen_width, screen_height : INTEGER
+DECLARE zbuffer : ARRAY[0 : 34, 0 : 34] OF REAL
+DECLARE char_output : ARRAY[0 : 34, 0 : 34] OF CHAR
+DECLARE empty_row_zbuffer : ARRAY[0:34] OF REAL
+DECLARE empty_row_char_buffer : ARRAY[0:34] OF CHAR
+DECLARE string_choice, concatenated : STRING
+
+FOR i <- 0 TO screen_width - 1 
+  empty_row_zbuffer[i] <- 0
+  empty_row_char_buffer[i] <- " " 
+NEXT i
+
+string_choice <- ".,-~:;=!*#$@"
+
+PROCEDURE generate(A: REAL, B: REAL)
+  cosA <- COS(A)
+  sinA <- SIN(A)
+  cosB <- COS(B)
+  sinB <- SIN(B)
+
+  FOR i <- 0 TO 34
+    FOR j <- 0 TO 34 
+      zbuffer[i, j] <- 0
+      char_output[i, j] <- " " 
+    NEXT j
+  NEXT i
+
+  theta <- 0.0
+
+  WHILE theta < 2 * 3.14159265 DO
+    theta <- theta + theta_spacing
+    costheta <- COS(theta)
+    sintheta <- SIN(theta)
+    phi <- 0.0
+
+    WHILE phi < 2 * 3.14159265 DO 
+      phi <- phi + phi_spacing
+      cosphi <- COS(phi)
+      sinphi <- SIN(phi)
+
+      circlex <- R2 + R1 * costheta
+      circley <- R1 * sintheta
+
+      x <- circlex*(cosB*cosphi + sinA*sinB*sinphi) - circley*cosA*sinB
+      y <- circlex*(sinB*cosphi - sinA*cosB*sinphi) + circley*cosA*cosB
+      z <- K2 + cosA*circlex*sinphi + circley*sinA
+      ooz <- 1/z
+      xp <- INT(screen_width/2 + K1 * ooz * x)
+      yp <- INT(screen_height/2 - K1*ooz*y)
+
+      L <- cosphi*costheta*sinB - cosA*costheta*sinphi - sinA*sintheta + cosB*(cosA*sintheta - costheta*sinA*sinphi)
+
+      IF L > 0 THEN 
+        IF ooz > zbuffer[xp, yp] THEN
+         zbuffer[xp, yp] <- ooz
+         luminance_index <- L*8
+         IF luminance_index < 0 THEN
+           luminance_index <- 11 - (luminance_index * -1)
+         ENDIF
+         IF luminance_index <1 THEN
+          luminance_index <- luminance_index + 1
+         ENDIF
+         char_output[xp, yp] <- MID(string_choice, INT(luminance_index), 1)
+        ENDIF
+      ENDIF
+    ENDWHILE
+  ENDWHILE
+  FOR i <- 0 TO screen_height - 1 
+    concatenated <- ""
+    FOR j <- 0 TO screen_width - 1 
+      concatenated <- concatenated & char_output[i, j]
+    NEXT j
+    OUTPUT concatenated
+  NEXT i
+ENDPROCEDURE
+
+
+theta_spacing <- 0.07
+phi_spacing <- 0.02
+R1 <- 1
+R2 <- 2
+K2 <- 5
+screen_width <- 35
+screen_height <- 35
+K1 <- screen_width * K2 * 3 / (8 * (R1 + R2))
+A <- 1.0
+B <- 1.0
+
+FOR i <- 0 TO 249 
+  CALL generate(A, B)
+  A <- A + 0.08
+  B <- B + 0.03
+NEXT i
