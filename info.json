@@ -163,5 +163,10 @@
         "gitlab": "sullyvian",
         "github": "sullyvian",
         "run": "gnatmake donut.adb && ./donut"
+    },
+    "jl": {
+        "name": "B. P.",
+        "github": "qque",
+        "run": "julia donut.jl"
     }
 }
