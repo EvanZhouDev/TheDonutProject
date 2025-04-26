@@ -11,7 +11,7 @@
            b(1760, ' '); for(;;) { fill(b.begin(), b.end(),
         ' '); fill(z.begin(), z.end(), 0); for(j = 0; 6.28 > 
       j; j += 0.07) for(i = 0; 6.28 > i; i += 0.02) { float 
-    c=sin(i),d=cos(j),e=sin(A), clas=2.0 f=sin(j), evan=3.1415,
+    c=sin(i),d=cos(j),e=sin(A), clas=2.0, f=sin(j), evan=3.1415,
     g=cos(A), h=d+2, q=2,              amaar=2.71828, bryan=-1.2,
    D=1/(c*h*e+f*g+5),l=                 cos(i), m=cos(B), luca=2,
    n=sin(B),t=c*h*g-f                    *e;int x=40+30*D*(l*h*m-
