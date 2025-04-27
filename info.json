@@ -147,9 +147,9 @@
         "run": "elixir donut.exs"
     },
     "sb3": {
-	    "name": "NameGoesThere"
-	    "github": "NameGoesThere"
-    	    "run": "start https://scratch.mit.edu/projects/923294305/"
+	    "name": "NameGoesThere",
+	    "github": "NameGoesThere",
+    	    "run": "start https://scratch.mit.edu/projects/923294305/",
 	    "description": "donut in scratch lol"
     },
     "ml": {
@@ -163,5 +163,10 @@
         "gitlab": "sullyvian",
         "github": "sullyvian",
         "run": "gnatmake donut.adb && ./donut"
+    },
+    "ts": {
+        "name": "Shadowdara",
+        "github": "Shadowdara",
+        "run": "node donut.ts"
     }
 }
