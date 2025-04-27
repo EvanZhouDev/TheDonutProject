@@ -167,6 +167,6 @@
     "ts": {
         "name": "Shadowdara",
         "github": "Shadowdara",
-        "run": ""
+        "run": "node donut.ts"
     }
 }
