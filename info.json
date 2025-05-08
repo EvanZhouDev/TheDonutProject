@@ -35,6 +35,11 @@
         "name": "Amaar Chughtai",
         "github": "DragonXDev"
     },
+    "c3": {
+        "name": "Matthias Roth",
+        "github": "thisRedH",
+        "repo": "https://github.com/thisRedH/donut.c3"
+    },
     "go": {
         "name": "Evan Roos",
         "github": "j-Ewan"
@@ -86,7 +91,7 @@
         "name": "Rue",
         "github": "IOKG04",
         "run": "node donut.jsfuck.js",
-	"description": "jsfuck implementation of donut.js made using jsfuck.com"
+        "description": "jsfuck implementation of donut.js made using jsfuck.com"
     },
     "html": {
         "name": "The Color Blocks",
@@ -147,10 +152,10 @@
         "run": "elixir donut.exs"
     },
     "sb3": {
-	    "name": "NameGoesThere"
-	    "github": "NameGoesThere"
-    	    "run": "start https://scratch.mit.edu/projects/923294305/"
-	    "description": "donut in scratch lol"
+        "name": "NameGoesThere",
+        "github": "NameGoesThere",
+        "run": "start https://scratch.mit.edu/projects/923294305/",
+        "description": "donut in scratch lol"
     },
     "ml": {
         "name": "Vianney Hervy",
