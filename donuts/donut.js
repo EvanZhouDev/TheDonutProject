@@ -1,20 +1,31 @@
-            let A=0,B=0,M=
-        Math;const a=()=>{let s
-      =[],t=[];A+=.05,B+=.07;const
-    o=M.cos(A),e=M.sin(A),n=M.cos(B
-   ),c=M.sin(B);for (let o=0;o<1760;
- o++)s[o]=o%80==79?"\n":" ",t[o]=0;for
-(let i=0;i<6.28;i+=.07){const r=M.cos(
-i),a=M.sin(i);for(let i=0;i<6.28;i+=.02
-){const l=M.sin        (i),f=M.cos(i),A
-=r+2,B=1/(l*A*          e+a*o+5),d=l*A*
-o-a*e,m=40+30*          B*(f*A*n-d*c)|0
-,v=12+15*B*(f*A        *c+d*n)|0,I=m+80
-*v,h=8*((a*e-l*r*o)*n-l*r*e-a*o-f*r*c)|
- 0;v<22&&v>=0&&m>=0&&m<79&&B>t[I]&&(t[
- I]=B,s[I]=".,-~:;=!*#$@"[h>0?h:0])}}
-  process.stdout.write(`\x1b[J\x1b[H`
-  +s.join(""))},i=setInterval(a,50
-      );/*=!!!**********!!!==:*/
-        /*~~;EvanZhouDev;;:~*/
-            /*.,-2023--,.*/
+                        eval(`var{sin:A,
+                  cos:B,sqrt:C,pow:D,round:E,c
+              eil:F,PI:_a}=Math,G=(x,y,z,X,Y,Z)=>{
+            var a=B(Y),b=B(Z),c=B(X),d=A(Z),e=A(X),f
+          =A(Y),C=e*f,D=c*f;return[x*a*b+y*(-C*b+c*d)+
+        z*(D*b+e*d),-x*a*d+y*(C*d+c*b)+z*(-D*d+e*b),-x*f
+      -y*e*a+z*c*a];},H=(w,h)=>{var b=[];while(h){b.push(n
+    ew Array(w).fill(0));h--;}return b;};_b = document.query
+    Selector("canvas").getContext("2d"),_c=_a/2,_d=15,_e=_d*
+  0.55,_f=0,_g=0,_h=_c/3,_i=H(F(500/_e),F(500/_d)),_j=H(F(500/
+  _e),F(500/_d)),draw=_=>{let a=2*_a;while(a>0) {let b=2*_a;wh
+  ile(b>0){var[c,d,e]=G((30*B(b)*B(a)+2*B(a)*30)/2,(30*B(b)*A(
+a)+2*A(a)*30)/2,30*A(b)/2,_f        ,_g,_h),[f,g,h]=G(B(b)*B(a),
+B(b)*A(a),A(b),_f,_g,_h),i            =1/C(D(120-c,2)+D(0-d,2)+D
+(0-e,2)),j=f*B(_c/2)*B(_                a/3)+g*B(_c/2)*A(_a/3)+h
+*A(_c/2),k=(d*350)/(120-                c),l=-(e*350)/(120-c),m=
+E((250 + k) / _e),n=E((2                50 + l)/_d);if(_i[n][m]<
+i){_i[n][m]=i;_j[n][m]=(                j+1)/2;}b-=_a*2/60}a-=_a
+*2/150;}_f+=0.02;_g+=0.001;_h+            =0.02;_b.fillStyle="black"
+;_b.fillRect(0,0,500,500);_j        .forEach((a,y)=>a.forEach((b
+  ,x)=>{_b.font=\`\$\{_d\}px Consolas\`;_b.fillStyle='#00FF00';_
+  b.fillText(" .,-~:;!=*#$@"[E(b*12)],x*_e,y*_d);_i[y][x]=0;_j
+  [y][x]=0;}));};setInterval(draw,50/3);`.replaceAll("\n","").
+    replaceAll("  ",""));/*---------------------------------
+    --------------------------------------------------------
+      ----------------------------------------------------
+        ------------------------------------------------
+          --------------------------------------------
+            ----------------------------------------
+                --------------------------------
+                      ------------------*/
