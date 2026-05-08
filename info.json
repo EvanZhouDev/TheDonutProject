@@ -168,5 +168,11 @@
         "gitlab": "sullyvian",
         "github": "sullyvian",
         "run": "gnatmake donut.adb && ./donut"
+    },
+    "rkt": {
+        "name": "Oscar Ortiz",
+        "github": "OscarOrtiz05",
+        "repo": "https://github.com/OscarOrtiz05/donuts-lisp.git",
+        "run": "racket donut.rkt"
     }
 }
