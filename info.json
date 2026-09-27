@@ -168,5 +168,8 @@
         "gitlab": "sullyvian",
         "github": "sullyvian",
         "run": "gnatmake donut.adb && ./donut"
+    },
+    "spwn": {
+	"name": "pattty"
     }
 }
